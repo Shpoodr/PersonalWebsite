@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Sample Project One",
+    "description": "A placeholder project description. One or two sentences about what it does, why you built it, and what was interesting about it.",
+    "tags": ["C++", "OpenGL", "CMake"],
+    "repo": "https://github.com/yourusername/sample-project-one",
+    "demo": null,
+    "image": null
+  },
+  {
+    "title": "Sample Project Two",
+    "description": "Another placeholder. This one has a live demo link to show how the optional demo button renders.",
+    "tags": ["C#", ".NET", "SQL"],
+    "repo": "https://github.com/yourusername/sample-project-two",
+    "demo": "https://example.com",
+    "image": null
+  }
+]

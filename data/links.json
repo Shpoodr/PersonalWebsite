@@ -1,0 +1,22 @@
+[
+  {
+    "label": "GitHub",
+    "url": "https://github.com/yourusername",
+    "icon": "github"
+  },
+  {
+    "label": "LinkedIn",
+    "url": "https://www.linkedin.com/in/yourusername",
+    "icon": "linkedin"
+  },
+  {
+    "label": "Email",
+    "url": "mailto:you@example.com",
+    "icon": "email"
+  },
+  {
+    "label": "Resume",
+    "url": "assets/resume.pdf",
+    "icon": "resume"
+  }
+]

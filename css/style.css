@@ -1,0 +1,279 @@
+/*
+ * style.css — all presentation for the site.
+ *
+ * Theming works through CSS custom properties ("variables"): every color is
+ * defined once on :root, and the dark theme simply redefines those variables
+ * inside a prefers-color-scheme media query. No JS needed.
+ */
+
+:root {
+  /* Light theme (default) — warm neutrals to complement the amber accent */
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --text-muted: #57534e;
+  --accent: #b45309;          /* amber-700: 4.8:1 contrast on white */
+  --accent-contrast: #ffffff; /* text color used ON the accent */
+  --accent-soft: #fef3c7;     /* pale amber for tag backgrounds */
+  --accent-soft-text: #92400e;
+  --border: #e7e5e4;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lift: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* When the visitor's OS is set to dark mode, swap the palette. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1917;
+    --surface: #292524;
+    --text: #f5f5f4;
+    --text-muted: #d6d3d1;
+    --accent: #fbbf24;          /* amber-400: bright enough to pop on dark */
+    --accent-contrast: #1c1917; /* dark text on the bright amber */
+    --accent-soft: #44403c;
+    --accent-soft-text: #fcd34d;
+    --border: #44403c;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-lift: 0 6px 16px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* ---------- Base ---------- */
+
+* {
+  box-sizing: border-box; /* width includes padding + border (saner sizing model) */
+  margin: 0;
+}
+
+html {
+  color-scheme: light dark; /* native form controls & scrollbars match the theme */
+}
+
+body {
+  /* System font stack: uses each OS's native UI font — zero download, always crisp */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%; /* images never overflow their container on small screens */
+  display: block;
+}
+
+/* Visible keyboard-focus ring; :focus-visible skips it for mouse clicks */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.avatar {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;      /* square image → circle */
+  object-fit: cover;       /* crop instead of squish if the photo isn't square */
+  margin: 0 auto 1.25rem;
+  border: 3px solid var(--accent);
+}
+
+.site-header h1 {
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* ---------- Link buttons (flexbox row that wraps on small screens) ---------- */
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;          /* buttons drop to the next line on narrow screens */
+  justify-content: center;
+  gap: 0.75rem;             /* spacing between flex items, no margin hacks */
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;     /* fully rounded ends = "pill" */
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--accent);
+}
+
+.link-button svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ---------- Projects ---------- */
+
+main {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+#projects h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+/*
+ * Responsive card grid, sparse-state friendly:
+ *  - auto-fit creates as many ~19-23rem columns as fit the container
+ *  - the 23rem cap stops 1-2 cards from stretching absurdly wide
+ *  - justify-content centers the tracks, so few cards sit centered
+ * Result: 1 card looks intentional, 2 sit side by side, 6+ wrap into rows.
+ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 23rem));
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;         /* clips the image to the rounded corners */
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* consistent image height across cards */
+  object-fit: cover;
+}
+
+.project-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-grow: 1;             /* equal-height cards in the same row */
+}
+
+.project-body h3 {
+  font-size: 1.15rem;
+}
+
+.project-description {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-soft-text);
+}
+
+.project-actions {
+  margin-top: auto;         /* pushes buttons to the card bottom */
+  display: flex;
+  gap: 0.6rem;
+  padding-top: 0.25rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.button-primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.button-secondary {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Empty state, notices, footer ---------- */
+
+.empty-state,
+.notice {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2.5rem 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  grid-column: 1 / -1;      /* span the full grid width */
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+}
