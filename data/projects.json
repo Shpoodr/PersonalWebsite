@@ -1,18 +1,10 @@
 [
   {
-    "title": "Sample Project One",
-    "description": "A placeholder project description. One or two sentences about what it does, why you built it, and what was interesting about it.",
-    "tags": ["C++", "OpenGL", "CMake"],
-    "repo": "https://github.com/yourusername/sample-project-one",
-    "demo": null,
-    "image": null
-  },
-  {
-    "title": "Sample Project Two",
-    "description": "Another placeholder. This one has a live demo link to show how the optional demo button renders.",
-    "tags": ["C#", ".NET", "SQL"],
-    "repo": "https://github.com/yourusername/sample-project-two",
-    "demo": "https://example.com",
+    "title": "HELLBENT",
+    "description": "A Souls-Like game with Rogue-Like Elements. I was in charge of the Upgrade, Skill, and Combat Systems design and implementation As well as some of the visual effects.",
+    "tags": ["C#", "Unity", "Systems Design"],
+    "repo": "https://github.com/PotatoJson/The-Gauntlet/tree/TESTING",
+    "demo": "https://store.steampowered.com/app/4694770/HELLBENT/",
     "image": null
   }
 ]
