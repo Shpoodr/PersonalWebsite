@@ -1,22 +1,22 @@
 [
   {
     "label": "GitHub",
-    "url": "https://github.com/yourusername",
+    "url": "https://github.com/Shpoodr",
     "icon": "github"
   },
   {
     "label": "LinkedIn",
-    "url": "https://www.linkedin.com/in/yourusername",
+    "url": "https://www.linkedin.com/in/logan-marshall-bb0444285/",
     "icon": "linkedin"
   },
   {
     "label": "Email",
-    "url": "mailto:you@example.com",
+    "url": "logansmar@gmail.com",
     "icon": "email"
   },
   {
     "label": "Resume",
-    "url": "assets/resume.pdf",
+    "url": "https://docs.google.com/document/d/1Wy6HfIf_EHupuRbPmMqjTlNzaKJKqLK3yrdn7IomrWw/edit?usp=drive_link",
     "icon": "resume"
   }
 ]
